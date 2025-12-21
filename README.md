@@ -17,9 +17,6 @@ A Minecraft Tool Assist that can save coordinates and converting between nether 
 - Clean CLI menu system
 - No external dependencies
 
-## Requirements
-- Python 3.10+
-
 ## How to Use
 
 ### 1. Clone Repo
