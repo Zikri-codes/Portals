@@ -1,6 +1,15 @@
 # Portals
 A Minecraft Tool Assist that can save coordinates and converting between nether and overworld for better transportation
 
+---
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+[![Repo Size](https://img.shields.io/github/repo-size/zikri-codes/Portals?style=for-the-badge)](https://github.com/zikri-codes/Portals)
+[![Last Commit](https://img.shields.io/github/last-commit/zikri-codes/Portals?style=for-the-badge)](https://github.com/zikri-codes/Portals/commits/main)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge)](LICENSE)
+
+---
+
 ## Features
 - Convert Nether ↔ Overworld coordinates
 - Save coordinates with a custom name
