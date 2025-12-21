@@ -15,6 +15,15 @@ A Minecraft Tool Assist that can save coordinates and converting between nether 
 
 ### 1. Clone Repo
 ```bash
-git clone https://github.com/username/portals.git
-cd portals
+git clone https://github.com/Zikri-codes/Portals.git
+cd Portals
 ```
+### 2. Run Main Script
+```bash
+python main.py
+```
+### 3. Menu / Commands
+- **Add portal**: add a new portal to storage
+- **Show portals**: display all saved portals
+- **Delete portal**: remove a portal by index
+- **Converter**: convert Nether ↔ Overworld coordinates
