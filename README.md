@@ -5,7 +5,7 @@ A Minecraft Tool Assist that can save coordinates and converting between nether 
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 [![Update](https://img.shields.io/badge/What's-New%3F%20-green?style=for-the-badge)](CHANGELOG.md)
-[![Version](https://img.shields.io/badge/Version-0.0.1-blue?style=for-the-badge)](CHANGELOG.md#011)
+[![Version](https://img.shields.io/badge/Version-0.1.1-blue?style=for-the-badge)](CHANGELOG.md#011)
 ![Repo Size](https://img.shields.io/github/repo-size/zikri-codes/Portals?style=for-the-badge)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge)](LICENSE)
 
