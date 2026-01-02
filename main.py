@@ -1,92 +1,74 @@
-# Minecraft Coords Library
+from app.ui import portal_add_cli as ui_add
+from app.ui import portal_show_cli as ui_show
+from app.ui import portal_delete_cli as ui_del
+from app.ui import converter_cli as ui_conv
+from app.ui import errors_cli as ui_err
+from app.ui import commons_cli as ui_cmn
+from app import usecase as usc
+from data import repository as dat_repo
+from core import config as conf
 
-from core import *
-from storage import *
-from utils import *
-from time import sleep as d
+def _conv(opt_conv: str) -> None:
+    coords = ui_conv.conv_ask_coords()
+    result = usc.convert_portal(coords, opt_conv)
+    if not result["ok"]:
+        ui_err.show_err(result["err"])
+        return
+    x, y, z = result["result"]
+    ui_conv.conv_result(x, y, z)
 
-default_line = "-" * 40
-running = True
-
-def main(user: str):
-    if user == "1":
-        converter = show_converter_menu()
-        if converter == "1":
-            try:
-                x, y, z = show_detailed_converter_menu("1")
-            except TypeError:
-                return
-            xo, yo, zo = nether_overworld_converter(x, y, z)
-            print(f"\nOutput : {xo} | {yo} | {zo}")
-            print(default_line)
-            d(0.5)
-        elif converter == "2":
-            try:
-                x, y, z = show_detailed_converter_menu("2")
-            except TypeError:
-                return
-            xn, yn, zn = overworld_nether_converter(x, y, z)
-            print(f"\nOutput : {xn} | {yn} | {zn}")
-            print(default_line)
-            d(0.5)
-        else:
-            print("Must choose 1/2") if converter.isdigit() else print("Must be a Valid Number")
-            print(default_line)
-            d(0.5)
-    elif user == "2":
-        try:
-            name, dimension, x, y, z = show_add_menu()
-        except TypeError:
-            return
-        adder = add_datamanager(x, y, z, dimension, name)
-        print(f"\n\"{name}\" Has been added to the portals") if adder else print("Something went wrong")
-        print(default_line)
-        d(0.5)
-    elif user == "3":
-        portals = load_datamanager()
-        deleted_portal = show_delete_menu(portals)
-        if not portals:
-            print(default_line)
-            d(0.5)
-            return
-        if deleted_portal == "0":
-            print("[0] Canceled")
-            print(default_line)
-            d(0.5)
-            return
-        if deleted_portal == "" or deleted_portal == None:
-            print("Can't be Empty")
-            print(default_line)
-            d(0.5)
-            return
-        try:
-            deleted_portal = int(deleted_portal) - 1
-        except ValueError:
-            print("Must be a Valid Number")
-            print(default_line)
-            d(0.5)
-            return
-        delete_datamanager(deleted_portal)
-        recent_deleted = portals[deleted_portal]["Name"]
-        print(f"\n\"{recent_deleted}\" Has been deleted")
-        print(default_line)
-        d(0.5)
-    elif user == "4":
-        portals = load_datamanager()
-        show_portals_menu(portals)
-        print(default_line)
-        d(0.5)
-    elif user == "0":
-        close_menu()
-        return "0"
+def _opt1() -> None:
+    ui_conv.conv_show()
+    opt = ui_cmn.ask()
+    if opt == "1":
+        _conv(opt)
+    elif opt == "2":
+        _conv(opt)
     else:
-        print("Must choose 0-5") if user.isdigit() else print("Must be a number!")
-        print(default_line)
+        ui_err.show_err("ERR_CHOICE(1,2)")
 
-greet_menu()
-while running:
-    option_menu()
-    user = input("\nChoose(num) : ").strip()
-    result = main(user)
-    if result == "0":
-        running = False
+def _opt2() -> None:
+    data = ui_add.add_prompt()
+    name, dims, coords = data
+    result = usc.add_portals(name, dims, coords)
+    if not result["ok"]:
+        ui_err.show_err(result["err"])
+        return
+    ui_add.add_result(result["name"])
+
+def _opt3() -> None:
+    portals = dat_repo.load_portals(conf.DATA_PATH)
+    ui_del.delete_show(portals)
+    opt_del = ui_cmn.ask()
+    result = usc.delete_portal(opt_del)
+    if not result["ok"]:
+        ui_err.show_err(result["err"])
+        return
+    ui_del.delete_result(result["deleted"]["Name"])
+
+def _opt4() -> None:
+    portals = usc.show_portals()
+    ui_show.portals_show_cli(portals["data"])
+
+def main() -> None:
+    ui_cmn.greet()
+    while True:
+        ui_cmn.menu()
+        opt = ui_cmn.ask()
+        
+        if opt == "1":
+            _opt1()
+        elif opt == "2":
+            _opt2()
+        elif opt == "3":
+            _opt3()
+        elif opt == "4":
+            _opt4()
+        elif opt == "0":
+            ui_cmn.farewell()
+            return
+        else:
+            ui_err.show_err("ERR_CHOICE(0,5)")
+        
+if __name__ == "__main__":
+    main()

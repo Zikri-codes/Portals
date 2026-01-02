@@ -4,8 +4,9 @@ A Minecraft Tool Assist that can save coordinates and converting between nether 
 ---
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-[![Repo Size](https://img.shields.io/github/repo-size/zikri-codes/Portals?style=for-the-badge)](https://github.com/zikri-codes/Portals)
-[![Last Commit](https://img.shields.io/github/last-commit/zikri-codes/Portals?style=for-the-badge)](https://github.com/zikri-codes/Portals/commits/main)
+[![Update](https://img.shields.io/badge/What's-New%3F%20-green?style=for-the-badge)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.0.1-blue?style=for-the-badge)](CHANGELOG.md#011)
+![Repo Size](https://img.shields.io/github/repo-size/zikri-codes/Portals?style=for-the-badge)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge)](LICENSE)
 
 ---
@@ -29,77 +30,11 @@ cd Portals
 python main.py
 ```
 ### 3. Menu / Commands
-- **Add portal**: add a new portal to storage
+- **Add portal**: add a new portal to json
 - **Show portals**: display all saved portals
 - **Delete portal**: remove a portal by index
 - **Converter**: convert Nether ↔ Overworld coordinates
-### 4. Example
-**Converter**
-```Text
-----------------------------------------
-Nether → Overworld : Converter
-
-Input : X | Y | Z
-Input : 125 125
-
-Output : 1000 | y? | 1000
-----------------------------------------
-```
-**Add Portal**
-```Text
-----------------------------------------
-Name      : Example
-Dimension : Overworld
-Coords    : 1000 1000
-
-"Example" Has been added to the portals
-----------------------------------------
-```
-**Delete Portal**
-```Text
-----------------------------------------
-Wich portals do you want to delete? 0 for cancel
-1. Testing
-2. Base
-3. Gold Farm
-4. Example
-
-Choose(num) : 1
-
-"Testing" Has been deleted
-----------------------------------------
-```
-**Show Portals**
-```Text
-----------------------------------------
-The List of The Portals:
-1. Base | Overworld | ['-1068', 'y?', '163']
-2. Gold Farm | Overworld | ['-1134', 'y?', '167']
-3. Example | Overworld | ['1000', 'y?', '1000']
-----------------------------------------
-```
-
-## File Structure
-```
-Portals/
-├── main.py          # CLI entry point
-├── core/            # conversion & validation logic
-│   ├── __init__.py
-│   ├── converter.py
-│   ├── validator.py
-│   └── formatter.py
-├── storage/         # portal data management
-│   ├── __init__.py
-│   ├── datamanager.py
-│   └── portals.json
-├── utils/           # CLI UI helpers
-│   ├── __init__.py
-│   └── menu.py
-├── README.md
-├── .gitignore
-└── LICENSE
-```
 
 ## Notes
-- All portal coordinates are stored in storage/portals.json.
+- All portal coordinates are stored in data/portals.json.
 - Y-coordinate is optional when adding a portal.
